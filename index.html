@@ -2,40 +2,16 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Twitter logo drawn with Canvas...</title>
+        <title>Twitter logo drawn with javascript canvas</title>
+        <style>
+        	body { background:#fffff; font-family: Museo,"Trebuchet MS",sans-serif; text-align:center; }
+            #viewport { border:2px solid #ccc; display:block; margin: 20px auto 20px;  }
+			h1 { color:#33ccff; margin:auto; text-shadow: 1px 1px 1px #333; }
+        </style>
         <script>
-        function getOffset( el ) {
-    var _x = 0;
-    var _y = 0;
-    while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
-        _x += el.offsetLeft - el.scrollLeft;
-        _y += el.offsetTop - el.scrollTop;
-        el = el.parentNode;
-    }
-    return { top: _y, left: _x };
-}
         window.onload = function() {
             var canvas = document.getElementById('viewport'),
-            ctx = canvas.getContext('2d');
-            var cOffset = getOffset(canvas),
-                cX = cOffset.left,
-                cY = cOffset.top,
-                txtPoints = document.getElementById('points');
-                i=0;
-                            canvas.addEventListener('mousemove', function(e) {
-                //console.log('x='+ (e.screenX-cX));
-                //console.log('y='+ (e.screenY-cY));
-            }, true);
-            
-            canvas.addEventListener('mousedown', function(e) {
-                var x = (e.clientX - cX - 3),
-                    y = (e.clientY - cY - 3);
-                ctx.beginPath();
-                ctx.arc(x, y, 2, 0, 2*Math.PI, true);
-                ctx.fill();
-                txtPoints.textContent += 'Point ' + i + ' = (' + x + ', ' + y + ')\n';
-                i++;
-            }, true);
+                ctx = canvas.getContext('2d');
             
             // draw body
             ctx.fillStyle = "#33ccff";
@@ -51,14 +27,13 @@
             
             // draw beak
             // bottom part
-            //ctx.beginPath();
             ctx.moveTo(231, 154);
             ctx.lineTo(231, 141);
             ctx.bezierCurveTo(245, 146, 250, 144, 257, 144);
             ctx.bezierCurveTo(259, 144, 253, 153, 231, 154);
             ctx.fill();
+
             // top part
-            //ctx.beginPath();
             ctx.moveTo(233, 143);
             ctx.lineTo(230, 130);
             ctx.bezierCurveTo(241, 135, 251, 129, 257, 129);
@@ -87,31 +62,11 @@
             ctx.bezierCurveTo(101, 171, 110, 180, 127, 180);
             ctx.lineTo(146, 131);
             ctx.fill();
-            
-            /*
-            
-            */
-            
-            // this is our model
-            var img = new Image();
-            img.src = 'twitter-logo.png';
-            ctx.globalAlpha = 0;
-            ctx.drawImage(img, 0, 0, 300, 300);
-            ctx.globalAlpha = 1;
-
         };
-        
         </script>
-        <style>
-        	body { background:#fffff; font-family: Museo,"Trebuchet MS",sans-serif; text-align:center; }
-            #viewport { border:2px solid #ccc; display:block; margin: 20px auto 20px; background:#; box-shadow: 0px 0px 10px 0px #333; }
-			h1 { color:#33ccff; margin:auto; text-shadow: 1px 1px 1px #333;
-				}
-        </style>
     </head>
     <body>
-    	<h1>Twitter logo drawn with Canvas...</h1>
-        <canvas id="viewport" width="400" height="400"></canvas>
-        <textarea id="points" cols="100" rows="50"></textarea>
+    	<h1>Twitter logo drawn with javascript canvas</h1>
+        <canvas id="viewport" width="300" height="300"></canvas>
     </body>
 </html>
